@@ -1,6 +1,7 @@
 import express from "express";
 import bookRoutes from "./routes/books";
 import UserRoutes from "./routes/user";
+import AuthRoutes from "./routes/auth";
 import connection from "./db/config";
 import { json, urlencoded } from "body-parser";
 
@@ -12,6 +13,7 @@ app.use(urlencoded({ extended: true }));
 
 app.use("/book", bookRoutes);
 app.use("/user", UserRoutes);
+app.use("/auth", AuthRoutes);
 
 app.use(
   (
