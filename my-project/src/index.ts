@@ -4,13 +4,15 @@ import UserRoutes from "./routes/user";
 import AuthRoutes from "./routes/auth";
 import connection from "./db/config";
 import { json, urlencoded } from "body-parser";
+//import passport from "./utils/passport";
+const passport = require("passport");
 
 const app = express();
 
 app.use(json());
-
 app.use(urlencoded({ extended: true }));
-
+app.use(passport.initialize());
+require("./utils/passport");
 app.use("/book", bookRoutes);
 app.use("/user", UserRoutes);
 app.use("/auth", AuthRoutes);

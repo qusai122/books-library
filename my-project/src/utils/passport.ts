@@ -7,7 +7,7 @@ const passportJWT = require("passport-jwt");
 const JWTStrategy = passportJWT.Strategy;
 const ExtractJWT = passportJWT.ExtractJwt;
 
-passport.use(
+const initialize = passport.use(
   new JWTStrategy(
     {
       jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
@@ -18,6 +18,8 @@ passport.use(
       done: (arg0: null, arg1: boolean | User) => any
     ) => {
       try {
+        console.log("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+
         const user = await User.findByPk(jwtPayload.id);
         if (user) {
           return done(null, user);
@@ -29,3 +31,5 @@ passport.use(
     }
   )
 );
+
+export default initialize;
