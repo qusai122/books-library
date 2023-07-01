@@ -1,2 +1,0 @@
-npm install jsonwebtoken
-npm install express passport passport-jwt jsonwebtoken bcrypt sequelize

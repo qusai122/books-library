@@ -1,4 +1,12 @@
-import { Table, Model, Column, DataType } from "sequelize-typescript";
+import {
+  Table,
+  Model,
+  Column,
+  DataType,
+  ForeignKey,
+  BelongsToMany,
+} from "sequelize-typescript";
+import { User } from "./user";
 
 @Table({
   timestamps: false,
@@ -22,4 +30,13 @@ export class Book extends Model {
     allowNull: false,
   })
   isbn!: string;
+
+  @ForeignKey(() => User)
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: true,
+  })
+  userId!: string;
+  //todo
+  //@BelongsToMany(()=>Book , rentedBooks)
 }

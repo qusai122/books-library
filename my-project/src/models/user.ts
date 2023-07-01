@@ -1,4 +1,13 @@
-import { Model, Column, DataType, Table } from "sequelize-typescript";
+import {
+  Model,
+  Column,
+  DataType,
+  Table,
+  Sequelize,
+  HasMany,
+} from "sequelize-typescript";
+import { Book } from "./books";
+const sequelize = new Sequelize("sqlite::memory:");
 
 @Table({
   timestamps: false,
@@ -26,4 +35,6 @@ export class User extends Model {
     allowNull: false,
   })
   password!: string;
+  @HasMany(() => Book)
+  books!: Book[];
 }

@@ -1,4 +1,5 @@
 import { RequestHandler } from "express";
+import { Book } from "../models/books";
 
 import { User } from "../models/user";
 
@@ -49,3 +50,8 @@ export const deleteUser: RequestHandler = async (req, res, next) => {
   const affectedRows = await User.destroy({ where: { id: id } });
   res.status(200).json(affectedRows);
 };
+
+export async function getUserById(id: number) {
+  const result = await getElementById(id);
+  return result;
+}
