@@ -1,6 +1,7 @@
 // passport.js
 
 import { User } from "../models/user";
+import { secret } from "../config/config";
 
 const passport = require("passport");
 const passportJWT = require("passport-jwt");
@@ -9,7 +10,7 @@ const ExtractJWT = passportJWT.ExtractJwt;
 
 const options = {
   jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-  secretOrKey: "123456789", // secret-key
+  secretOrKey: secret, // secret-key
 };
 export const initialize = passport.use(
   new JWTStrategy(

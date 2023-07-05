@@ -2,6 +2,7 @@ import { Router } from "express";
 import { getUserBooks } from "../controllers/books";
 import { User } from "../models/user";
 import passport from "../utils/passport";
+import { secret } from "../config/config";
 
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -20,7 +21,7 @@ router.post("/register", async (req, res) => {
     });
 
     // Generate JWT token
-    const token = jwt.sign({ id: user.id }, "123456789"); // secret-key
+    const token = jwt.sign({ id: user.id }, secret);
 
     res.json({ user, token });
   } catch (error) {
@@ -46,7 +47,7 @@ router.post("/login", async (req, res) => {
     }
 
     //todo:: change secret key
-    const token = jwt.sign({ id: user.id }, "123456789", { expiresIn: "1d" });
+    const token = jwt.sign({ id: user.id }, secret, { expiresIn: "1d" });
     user.password = "********";
     res.json({ user, token });
   } catch (error) {
