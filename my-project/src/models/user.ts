@@ -25,7 +25,7 @@ export class User extends Model {
     type: DataType.STRING,
     allowNull: false,
   })
-  password!: string;
+  books_id!: string;
   @HasMany(() => Book)
   books!: Book[];
 }
