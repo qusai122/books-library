@@ -1,5 +1,5 @@
-import { Model, Column, DataType, Table } from "sequelize-typescript";
-
+import { Model, Column, DataType, Table, HasMany } from "sequelize-typescript";
+import { Book } from "./books";
 @Table({
   timestamps: false,
   tableName: "users",
@@ -25,5 +25,7 @@ export class User extends Model {
     type: DataType.STRING,
     allowNull: false,
   })
-  password!: string;
+  books_id!: string;
+  @HasMany(() => Book)
+  books!: Book[];
 }
